@@ -1,4 +1,2 @@
 # Pelmishki
-
-**всем привет от chiefaplugg**
-**darova**
+**Игра-кликер "Pilmen"**
