@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/cmake_install.cmake",
+		"C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/SDL_game/SDL3/cmake_install.cmake",
+		"C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/SDL_game/SDL_image/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
