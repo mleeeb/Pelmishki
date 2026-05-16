@@ -49,12 +49,22 @@ cmake_ninja_workdir = C$:\Users\1991\source\repos\Pelmishki\out\build\x64-Debug\
 
 build cmake_object_order_depends_target_Pelmishki: phony || cmake_object_order_depends_target_SDL3-shared cmake_object_order_depends_target_SDL3_image-shared
 
-build CMakeFiles\Pelmishki.dir\SDL_game\main.cpp.obj: CXX_COMPILER__Pelmishki_unscanned_Debug C$:\Users\1991\source\repos\Pelmishki\SDL_game\main.cpp || cmake_object_order_depends_target_Pelmishki
+build CMakeFiles\Pelmishki.dir\SDL_game\Source_Files\main.cpp.obj: CXX_COMPILER__Pelmishki_unscanned_Debug C$:\Users\1991\source\repos\Pelmishki\SDL_game\Source$ Files\main.cpp || cmake_object_order_depends_target_Pelmishki
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   INCLUDES = -IC:\Users\1991\source\repos\Pelmishki\out\build\x64-Debug\SDL_game\SDL3\include-revision -IC:\Users\1991\source\repos\Pelmishki\SDL_game\SDL3\include -IC:\Users\1991\source\repos\Pelmishki\SDL_game\SDL_image\include
   OBJECT_DIR = CMakeFiles\Pelmishki.dir
-  OBJECT_FILE_DIR = CMakeFiles\Pelmishki.dir\SDL_game
+  OBJECT_FILE_DIR = CMakeFiles\Pelmishki.dir\SDL_game\Source_Files
+  TARGET_COMPILE_PDB = CMakeFiles\Pelmishki.dir\
+  TARGET_PDB = Pelmishki.pdb
+  TARGET_SUPPORT_DIR = CMakeFiles\Pelmishki.dir
+
+build CMakeFiles\Pelmishki.dir\SDL_game\Source_Files\Game.cpp.obj: CXX_COMPILER__Pelmishki_unscanned_Debug C$:\Users\1991\source\repos\Pelmishki\SDL_game\Source$ Files\Game.cpp || cmake_object_order_depends_target_Pelmishki
+  CONFIG = Debug
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  INCLUDES = -IC:\Users\1991\source\repos\Pelmishki\out\build\x64-Debug\SDL_game\SDL3\include-revision -IC:\Users\1991\source\repos\Pelmishki\SDL_game\SDL3\include -IC:\Users\1991\source\repos\Pelmishki\SDL_game\SDL_image\include
+  OBJECT_DIR = CMakeFiles\Pelmishki.dir
+  OBJECT_FILE_DIR = CMakeFiles\Pelmishki.dir\SDL_game\Source_Files
   TARGET_COMPILE_PDB = CMakeFiles\Pelmishki.dir\
   TARGET_PDB = Pelmishki.pdb
   TARGET_SUPPORT_DIR = CMakeFiles\Pelmishki.dir
@@ -67,7 +77,7 @@ build CMakeFiles\Pelmishki.dir\SDL_game\main.cpp.obj: CXX_COMPILER__Pelmishki_un
 #############################################
 # Link the executable Pelmishki.exe
 
-build Pelmishki.exe: CXX_EXECUTABLE_LINKER__Pelmishki_Debug CMakeFiles\Pelmishki.dir\SDL_game\main.cpp.obj | SDL_game\SDL_image\SDL3_image.lib SDL_game\SDL3\SDL3.lib C$:\Users\1991\source\repos\Pelmishki\SDL_game\SDL3\src\dynapi\SDL_dynapi.sym || SDL_game\SDL3\SDL3.dll SDL_game\SDL_image\SDL3_image.dll
+build Pelmishki.exe: CXX_EXECUTABLE_LINKER__Pelmishki_Debug CMakeFiles\Pelmishki.dir\SDL_game\Source_Files\main.cpp.obj CMakeFiles\Pelmishki.dir\SDL_game\Source_Files\Game.cpp.obj | SDL_game\SDL_image\SDL3_image.lib SDL_game\SDL3\SDL3.lib C$:\Users\1991\source\repos\Pelmishki\SDL_game\SDL3\src\dynapi\SDL_dynapi.sym || SDL_game\SDL3\SDL3.dll SDL_game\SDL_image\SDL3_image.dll
   CONFIG = Debug
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console

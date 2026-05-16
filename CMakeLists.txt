@@ -7,7 +7,7 @@ add_subdirectory(SDL_game/SDL3 EXCLUDE_FROM_ALL)
 add_subdirectory(SDL_game/SDL_image EXCLUDE_FROM_ALL)
 
 
-add_executable(Pelmishki SDL_game/main.cpp)
+add_executable(Pelmishki "SDL_game/Source Files/main.cpp" "SDL_game/Source Files/Game.cpp" )
 target_link_libraries(Pelmishki PRIVATE
     SDL3::SDL3
     SDL3_image::SDL3_image
