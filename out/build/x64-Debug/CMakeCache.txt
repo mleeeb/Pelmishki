@@ -273,8 +273,85 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Enable to build 7-Zip source packages
+CPACK_SOURCE_7Z:BOOL=ON
+
+//Enable to build ZIP source packages
+CPACK_SOURCE_ZIP:BOOL=ON
+
+//Disable support of compressed WOFF2 fonts.
+FT_DISABLE_BROTLI:BOOL=ON
+
+//Disable support of bzip2 compressed fonts.
+FT_DISABLE_BZIP2:BOOL=ON
+
+//Disable HarfBuzz (used for improving auto-hinting of OpenType
+// fonts).
+FT_DISABLE_HARFBUZZ:BOOL=OFF
+
+//Disable support of PNG compressed OpenType embedded bitmaps.
+FT_DISABLE_PNG:BOOL=ON
+
+//Disable use of system zlib and use internal zlib library instead.
+FT_DISABLE_ZLIB:BOOL=ON
+
+//Enable support for meaningful error descriptions.
+FT_ENABLE_ERROR_STRINGS:BOOL=OFF
+
+//Require HarfBuzz for improving auto-hinting of OpenType fonts.
+FT_REQUIRE_HARFBUZZ:BOOL=ON
+
 //Git command line client
 GIT_EXECUTABLE:FILEPATH=C:/Program Files/Git/cmd/git.exe
+
+//FT_Done_MM_Var
+HAVE_FT_DONE_MM_VAR:BOOL=1
+
+//FT_Get_Transform
+HAVE_FT_GET_TRANSFORM:BOOL=1
+
+//FT_Get_Var_Blend_Coordinates
+HAVE_FT_GET_VAR_BLEND_COORDINATES:BOOL=1
+
+//FT_Set_Var_Blend_Coordinates
+HAVE_FT_SET_VAR_BLEND_COORDINATES:BOOL=1
+
+//Build harfbuzz-subset
+HB_BUILD_SUBSET:BOOL=OFF
+
+//Build harfbuzz utils, needs cairo, freetype, and glib properly
+// be installed
+HB_BUILD_UTILS:BOOL=OFF
+
+//Enable cairo interop helpers
+HB_HAVE_CAIRO:BOOL=OFF
+
+//Enable DirectWrite shaper backend on Windows
+HB_HAVE_DIRECTWRITE:BOOL=OFF
+
+//Enable freetype interop helpers
+HB_HAVE_FREETYPE:BOOL=ON
+
+//Enable GDI integration helpers on Windows
+HB_HAVE_GDI:BOOL=ON
+
+//Enable glib unicode functions
+HB_HAVE_GLIB:BOOL=OFF
+
+//Enable GObject Bindings
+HB_HAVE_GOBJECT:BOOL=OFF
+
+//Enable Graphite2 complementary shaper
+HB_HAVE_GRAPHITE2:BOOL=OFF
+
+//Enable icu unicode functions
+HB_HAVE_ICU:BOOL=OFF
+
+//Enable building introspection (.gir/.typelib) files
+HB_HAVE_INTROSPECTION:BOOL=OFF
+
+//Enable Uniscribe shaper backend on Windows
+HB_HAVE_UNISCRIBE:BOOL=ON
 
 //Extra compile options of LibUSB
 LibUSB_COMPILE_OPTIONS:STRING=
@@ -291,11 +368,23 @@ LibUSB_LINK_FLAGS:STRING=
 //Extra link libraries of LibUSB
 LibUSB_LINK_LIBRARIES:STRING=
 
+//Path to a library.
+MATH_LIBRARY:FILEPATH=MATH_LIBRARY-NOTFOUND
+
 //Arguments to supply to pkg-config
 PKG_CONFIG_ARGN:STRING=
 
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
+
+//Build examples
+PLUTOSVG_BUILD_EXAMPLES:BOOL=OFF
+
+//Enable Freetype integration
+PLUTOSVG_ENABLE_FREETYPE:BOOL=ON
+
+//Build examples
+PLUTOVG_BUILD_EXAMPLES:BOOL=OFF
 
 //The directory containing a CMake configuration file for PNG.
 PNG_DIR:PATH=PNG_DIR-NOTFOUND
@@ -310,22 +399,31 @@ Pelmishki_IS_TOP_LEVEL:STATIC=ON
 Pelmishki_SOURCE_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki
 
 //Value Computed by CMake
-SDL3_BINARY_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/SDL_game/SDL3
+SDL3_BINARY_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/SDL_game/Resourses/SDL3
 
 //Value Computed by CMake
 SDL3_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-SDL3_SOURCE_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/SDL_game/SDL3
+SDL3_SOURCE_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/SDL_game/Resourses/SDL3
 
 //Value Computed by CMake
-SDL3_image_BINARY_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/SDL_game/SDL_image
+SDL3_image_BINARY_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/SDL_game/Resourses/SDL_image
 
 //Value Computed by CMake
 SDL3_image_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-SDL3_image_SOURCE_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/SDL_game/SDL_image
+SDL3_image_SOURCE_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/SDL_game/Resourses/SDL_image
+
+//Value Computed by CMake
+SDL3_ttf_BINARY_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/SDL_game/Resourses/SDL_ttf
+
+//Value Computed by CMake
+SDL3_ttf_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+SDL3_ttf_SOURCE_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/SDL_game/Resourses/SDL_ttf
 
 //Support loading ANI animations
 SDLIMAGE_ANI:BOOL=ON
@@ -449,6 +547,27 @@ SDLIMAGE_XPM:BOOL=ON
 
 //Support loading XV images
 SDLIMAGE_XV:BOOL=ON
+
+//Use harfbuzz to improve text shaping
+SDLTTF_HARFBUZZ:BOOL=ON
+
+//Enable SDL3_ttf install target
+SDLTTF_INSTALL:BOOL=OFF
+
+//Use plutosvg for color emoji support
+SDLTTF_PLUTOSVG:BOOL=ON
+
+//Build the SDL3_ttf sample program(s)
+SDLTTF_SAMPLES:BOOL=OFF
+
+//Fail when a dependency could not be found
+SDLTTF_STRICT:BOOL=OFF
+
+//Use vendored third-party libraries
+SDLTTF_VENDORED:BOOL=ON
+
+//Treat warnings as errors
+SDLTTF_WERROR:BOOL=OFF
 
 //Support the ALSA audio API
 SDL_ALSA:BOOL=OFF
@@ -730,6 +849,9 @@ SDL_X11:BOOL=OFF
 //Use Xinput for Windows
 SDL_XINPUT:BOOL=ON
 
+//harfbuzz install option
+SKIP_INSTALL_LIBRARIES:BOOL=ON
+
 //The directory containing a CMake configuration file for TIFF.
 TIFF_DIR:PATH=TIFF_DIR-NOTFOUND
 
@@ -745,9 +867,6 @@ TIFF_LIBRARY_RELEASE:FILEPATH=TIFF_LIBRARY_RELEASE-NOTFOUND
 //The directory containing a CMake configuration file for Tiff.
 Tiff_DIR:PATH=Tiff_DIR-NOTFOUND
 
-//zlib examples
-ZLIB_BUILD_EXAMPLES:BOOL=OFF
-
 //The directory containing a CMake configuration file for ZLIB.
 ZLIB_DIR:PATH=ZLIB_DIR-NOTFOUND
 
@@ -760,8 +879,47 @@ ZLIB_LIBRARY_DEBUG:FILEPATH=ZLIB_LIBRARY_DEBUG-NOTFOUND
 //Path to a library.
 ZLIB_LIBRARY_RELEASE:FILEPATH=ZLIB_LIBRARY_RELEASE-NOTFOUND
 
+//Value Computed by CMake
+freetype_BINARY_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/SDL_game/Resourses/SDL_ttf/external/freetype-build
+
+//Value Computed by CMake
+freetype_IS_TOP_LEVEL:STATIC=OFF
+
+//Dependencies for the target
+freetype_LIB_DEPENDS:STATIC=general;HarfBuzz::HarfBuzz;
+
+//Value Computed by CMake
+freetype_SOURCE_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/SDL_game/Resourses/SDL_ttf/external/freetype
+
+//Value Computed by CMake
+harfbuzz_BINARY_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/SDL_game/Resourses/SDL_ttf/external/harfbuzz-build
+
+//Value Computed by CMake
+harfbuzz_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+harfbuzz_SOURCE_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/SDL_game/Resourses/SDL_ttf/external/harfbuzz
+
 //The directory containing a CMake configuration file for libavif.
 libavif_DIR:PATH=libavif_DIR-NOTFOUND
+
+//Value Computed by CMake
+plutosvg_BINARY_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/SDL_game/Resourses/SDL_ttf/external/plutosvg-guild
+
+//Value Computed by CMake
+plutosvg_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+plutosvg_SOURCE_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/SDL_game/Resourses/SDL_ttf/external/plutosvg
+
+//Value Computed by CMake
+plutovg_BINARY_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/out/build/x64-Debug/SDL_game/Resourses/SDL_ttf/external/plutovg-build
+
+//Value Computed by CMake
+plutovg_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+plutovg_SOURCE_DIR:STATIC=C:/Users/1991/source/repos/Pelmishki/SDL_game/Resourses/SDL_ttf/external/plutovg
 
 //Extra compile options of webp
 webp_COMPILE_OPTIONS:STRING=
@@ -940,7 +1098,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=8
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib
@@ -1008,10 +1166,16 @@ COMPILER_SUPPORTS_SSE4_1:INTERNAL=1
 COMPILER_SUPPORTS_SSE4_2:INTERNAL=1
 //Test /W3
 COMPILER_SUPPORTS_W3:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_7Z
+CPACK_SOURCE_7Z-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CPACK_SOURCE_ZIP
+CPACK_SOURCE_ZIP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
 //Have include alloca.h
 HAVE_ALLOCA_H:INTERNAL=
+//Have function atexit
+HAVE_ATEXIT:INTERNAL=1
 //Have include audioclient.h
 HAVE_AUDIOCLIENT_H:INTERNAL=1
 //Have include d3d11_1.h
@@ -1032,6 +1196,10 @@ HAVE_DXGI1_6_H:INTERNAL=1
 HAVE_DXGI_H:INTERNAL=1
 //Test HAVE_GAMEINPUT_H
 HAVE_GAMEINPUT_H:INTERNAL=1
+//Have function getpagesize
+HAVE_GETPAGESIZE:INTERNAL=
+//Have function isatty
+HAVE_ISATTY:INTERNAL=1
 //Have library m
 HAVE_LIBM:INTERNAL=
 //Have include malloc.h
@@ -1040,16 +1208,28 @@ HAVE_MALLOC:INTERNAL=1
 HAVE_MALLOC_H:INTERNAL=1
 //Test HAVE_MFAPI_H
 HAVE_MFAPI_H:INTERNAL=1
+//Have function mmap
+HAVE_MMAP:INTERNAL=
 //Have include mmdeviceapi.h
 HAVE_MMDEVICEAPI_H:INTERNAL=1
+//Have function mprotect
+HAVE_MPROTECT:INTERNAL=
 //Have include roapi.h
 HAVE_ROAPI_H:INTERNAL=1
 //Have include sensorsapi.h
 HAVE_SENSORSAPI_H:INTERNAL=1
 //Have include shellscalingapi.h
 HAVE_SHELLSCALINGAPI_H:INTERNAL=1
+//Have include stdbool.h
+HAVE_STDBOOL_H:INTERNAL=1
+//Have function sysconf
+HAVE_SYSCONF:INTERNAL=
+//Have include sys/mman.h
+HAVE_SYS_MMAN_H:INTERNAL=
 //Have include tpcshrd.h
 HAVE_TPCSHRD_H:INTERNAL=1
+//Have include unistd.h
+HAVE_UNISTD_H:INTERNAL=
 //Test HAVE_WIN32_CC
 HAVE_WIN32_CC:INTERNAL=1
 //Test HAVE_WINDOWS_GAMING_INPUT_H
@@ -1346,4 +1526,14 @@ ZLIB_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 _ALLOCA_IN_MALLOC_H:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Users/1991/source/repos/Pelmishki/out/install/x64-Debug
+//Compiler reason failure
+_Python3_Compiler_REASON_FAILURE:INTERNAL=
+//Development reason failure
+_Python3_Development_REASON_FAILURE:INTERNAL=
+//Path to a program.
+_Python3_EXECUTABLE:INTERNAL=_Python3_EXECUTABLE-NOTFOUND
+//Interpreter reason failure
+_Python3_Interpreter_REASON_FAILURE:INTERNAL=
+//NumPy reason failure
+_Python3_NumPy_REASON_FAILURE:INTERNAL=
 

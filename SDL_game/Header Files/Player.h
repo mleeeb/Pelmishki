@@ -6,7 +6,7 @@
 
 class Player {
 public:
-	Player(SDL_Renderer* renderer, TTF_Font* font);
+	Player(SDL_Renderer* renderer, TTF_Font* font, int currentHealth, int totalHealth);
 	~Player();
 
 	void update();
@@ -18,4 +18,9 @@ private:
 	TTF_Font* font;
 
 	PlayerHUD* playerHUD;
+
+	//для стен
+
+	int currentHealth;
+	int totalHealth;
 };

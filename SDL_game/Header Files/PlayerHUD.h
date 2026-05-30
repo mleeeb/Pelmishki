@@ -1,13 +1,14 @@
 #pragma once
 #include <string>
 #include <SDL3/SDL.h>
+#include "Health.h"
 
 #include <SDL3_ttf/SDL_ttf.h>
 
 class PlayerHUD
 {
 public:
-	PlayerHUD(SDL_Renderer* renderer, TTF_Font* font);
+	PlayerHUD(SDL_Renderer* renderer, TTF_Font* font, int currentHealth, int totalHealth);
 	~PlayerHUD();
 
 	void update();
@@ -15,6 +16,8 @@ public:
 
 
 private:
+	Health* health;
+
 	SDL_Renderer* renderer;
 	TTF_Font* font;
 	SDL_Texture* moneyTexture;

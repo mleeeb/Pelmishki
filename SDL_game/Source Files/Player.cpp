@@ -1,13 +1,20 @@
 #include "Player.h"
 
-Player::Player(SDL_Renderer* renderer, TTF_Font* font) :
-	renderer(renderer), font(font)
+Player::Player(SDL_Renderer* renderer, TTF_Font* font, int currentHealth, int totalHealth) :
+	renderer(renderer),
+	font(font),
+	currentHealth(currentHealth),
+	totalHealth(totalHealth)
+
 {
-	playerHUD = new PlayerHUD(renderer, font);
+	currentHealth = 50;
+	totalHealth = 100;
+	playerHUD = new PlayerHUD(renderer, font, currentHealth, totalHealth);
 }
 
 Player::~Player()
 {
+	delete playerHUD;
 }
 
 

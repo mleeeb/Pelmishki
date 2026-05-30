@@ -147,6 +147,116 @@ rule C_SHARED_LIBRARY_LINKER__SDL3_image-shared_Debug
 
 
 #############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__SDL3_ttf-shared_unscanned_Debug
+  deps = msvc
+  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~1\MIB055~1\18\COMMUN~1\VC\Tools\MSVC\1451~1.362\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for compiling RC files.
+
+rule RC_COMPILER__SDL3_ttf-shared_unscanned_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = C:/PROGRA~1/MIB055~1/18/COMMUN~1/Common7/IDE/COMMON~1/MICROS~1/CMake/CMake/bin/cmcldeps.exe RC $in $DEP_FILE $out "Примечание: включение файла:  " "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe" ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\rc.exe $DEFINES $INCLUDES $FLAGS /fo $out $in
+  description = Building RC object $out
+
+
+#############################################
+# Rule for linking CXX shared library.
+
+rule CXX_SHARED_LIBRARY_LINKER__SDL3_ttf-shared_Debug
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && "C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E vs_link_dll --msvc-ver=1951 --intdir=$OBJECT_DIR --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\mt.exe --manifests $MANIFESTS -- C:\PROGRA~1\MIB055~1\18\COMMUN~1\VC\Tools\MSVC\1451~1.362\bin\Hostx64\x64\link.exe /nologo $in  /out:$TARGET_FILE /implib:$TARGET_IMPLIB /pdb:$TARGET_PDB /dll /version:0.3 $LINK_FLAGS $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking CXX shared library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__harfbuzz_unscanned_Debug
+  deps = msvc
+  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~1\MIB055~1\18\COMMUN~1\VC\Tools\MSVC\1451~1.362\bin\Hostx64\x64\cl.exe  /nologo /TP $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__harfbuzz_Debug
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~1\MIB055~1\18\COMMUN~1\VC\Tools\MSVC\1451~1.362\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__freetype_unscanned_Debug
+  deps = msvc
+  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~1\MIB055~1\18\COMMUN~1\VC\Tools\MSVC\1451~1.362\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for compiling RC files.
+
+rule RC_COMPILER__freetype_unscanned_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = C:/PROGRA~1/MIB055~1/18/COMMUN~1/Common7/IDE/COMMON~1/MICROS~1/CMake/CMake/bin/cmcldeps.exe RC $in $DEP_FILE $out "Примечание: включение файла:  " "C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe" ${LAUNCHER}${CODE_CHECK}C:\PROGRA~2\WI3CF2~1\10\bin\100261~1.0\x64\rc.exe $DEFINES $INCLUDES $FLAGS /fo $out $in
+  description = Building RC object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__freetype_Debug
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~1\MIB055~1\18\COMMUN~1\VC\Tools\MSVC\1451~1.362\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__plutovg_unscanned_Debug
+  deps = msvc
+  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~1\MIB055~1\18\COMMUN~1\VC\Tools\MSVC\1451~1.362\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__plutovg_Debug
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~1\MIB055~1\18\COMMUN~1\VC\Tools\MSVC\1451~1.362\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__plutosvg_unscanned_Debug
+  deps = msvc
+  command = ${LAUNCHER}${CODE_CHECK}C:\PROGRA~1\MIB055~1\18\COMMUN~1\VC\Tools\MSVC\1451~1.362\bin\Hostx64\x64\cl.exe  /nologo $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB /FS -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__plutosvg_Debug
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\PROGRA~1\MIB055~1\18\COMMUN~1\VC\Tools\MSVC\1451~1.362\bin\Hostx64\x64\lib.exe /nologo $LINK_FLAGS /out:$TARGET_FILE $in && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE

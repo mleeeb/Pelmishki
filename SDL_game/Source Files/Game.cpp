@@ -1,11 +1,12 @@
 #include "Game.h"
-
+#include <iostream>
 
 Game::Game()
 {
 	mainrect = { 0, 0, 1280, 720};
 
 	player = nullptr;
+
 }
 
 Game::~Game()
@@ -23,7 +24,7 @@ SDL_AppResult Game::SDL_AppInit()
 	font = TTF_OpenFont("C:/Users/1991/source/repos/Pelmishki/SDL_game/Resourses/assets/Fonts/Font_HTR.ttf", 24);
 
 
-	player = new Player(renderer, font);
+	player = new Player(renderer, font, 50, 100);
 
 	return SDL_AppResult();
 }
@@ -46,12 +47,13 @@ SDL_AppResult Game::SDL_AppIterate()
 	SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
 	SDL_RenderClear(renderer);
 
-	//// отрисовка изображения
-	//sdl_texture* cattexture = img_loadtexture(renderer, "c:/users/1991/source/repos/pelmishki/sdl_game/resourses/assets/main.jpg");
-	//sdl_rendertexture(renderer, cattexture, null, &mainrect);
-	//sdl_destroytexture(cattexture);
+	// отрисовка изображения
+	SDL_Texture* background = IMG_LoadTexture(renderer, "c:/users/1991/source/repos/pelmishki/sdl_game/resourses/assets/main.jpg");
+	SDL_RenderTexture(renderer, background, NULL, &mainrect);
+	SDL_DestroyTexture(background);
 
 	if (player) {
+		player->update();
 		player->draw();
 	}
 
