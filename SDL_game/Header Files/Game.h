@@ -1,73 +1,53 @@
-/**
- * @file Game.h
- * @brief Главный игровой класс, управляющий окном, рендерингом и основным циклом игры.
- * @author Rmeshki
- */
-
 #pragma once
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_ttf/SDL_ttf.h>
+#include <vector>
 
-#include "Player.h"
+#include "Enemy.h"
 
-class Player;
-
-/**
- * @brief Главный класс игры.
- * @details Отвечает за инициализацию SDL, создание окна и рендерера,
- *          обработку событий, основной игровой цикл и очистку ресурсов.
- *          Использует Callback-интерфейс SDL3 (SDL_AppInit, SDL_AppEvent и т.д.).
- */
 class Game
 {
 public:
-	/**
-	 * @brief Конструктор игры.
-	 */
-	Game();
-	
-	/**
-	 * @brief Деструктор игры. Очищает ресурсы.
-	 */
-	~Game();
+    Game();
+    ~Game();
 
-	/**
-	 * @brief Инициализирует игру (SDL, окно, рендерер, шрифты, игрока).
-	 * @return SDL_APP_CONTINUE при успехе, иначе код ошибки.
-	 */
-	SDL_AppResult SDL_AppInit();
-	
-	/**
-	 * @brief Обрабатывает входящие события (клавиатура, мышь, закрытие окна).
-	 * @param event Указатель на событие SDL.
-	 * @return SDL_APP_CONTINUE для продолжения, SDL_APP_SUCCESS для выхода.
-	 */
-	SDL_AppResult SDL_AppEvent(SDL_Event* event);
-	
-	/**
-	 * @brief Основной игровой цикл. Вызывается каждый кадр.
-	 * @details Отрисовывает все объекты, обновляет логику игры.
-	 * @return SDL_APP_CONTINUE для продолжения, иначе код остановки.
-	 */
-	SDL_AppResult SDL_AppIterate();
-	
-	/**
-	 * @brief Завершает работу игры и освобождает ресурсы.
-	 * @param result Результат работы приложения (обычно SDL_APP_SUCCESS или ошибка).
-	 */
-	void SDL_AppQuit(SDL_AppResult result);
+    SDL_AppResult SDL_AppInit();
+    SDL_AppResult SDL_AppEvent(SDL_Event* event);
+    SDL_AppResult SDL_AppIterate();
+    void SDL_AppQuit(SDL_AppResult result);
 
-	/**
-	 * @brief Основной прямоугольник отрисовки (возможно, для фона или UI).
-	 */
-	SDL_FRect mainrect;
+    void SetWindowAndRenderer(SDL_Window* win, SDL_Renderer* ren) {
+        window = win;
+        renderer = ren;
+    }
+
+    SDL_FRect mainrect;
+
+    // Константы для размеров окна
+    static constexpr int SCREEN_WIDTH = 540;
+    static constexpr int SCREEN_HEIGHT = 720;
 
 private:
-	SDL_Window* window;     ///< Указатель на главное окно игры.
-	SDL_Renderer* renderer; ///< Указатель на рендерер для 2D-отрисовки.
-	
-	TTF_Font* font;         ///< Шрифт для отображения текста (очки, мана и т.д.).
+    void spawnEnemies();
+    void checkVictory();
+    void showVictoryScreen();
+    void resetGame();
+    bool isPointInRect(float x, float y, SDL_FRect rect);
+    void activateNextEnemy();
+    void loadBackground();
 
-	Player* player;         ///< Указатель на объект игрока.
+    SDL_Window* window;
+    SDL_Renderer* renderer;
+    TTF_Font* font;
+
+    std::vector<Enemy*> enemies;
+    int currentEnemyIndex;
+    bool gameActive;
+    bool victoryScreen;
+
+    SDL_Texture* victoryTexture;
+    SDL_FRect victoryRect;
+
+    SDL_Texture* backgroundTexture;
 };
