@@ -1,6 +1,31 @@
+/**
+ * @file Enemy.cpp
+ * @brief Реализация методов класса Enemy.
+ *
+ * Этот файл содержит реализацию всех методов класса Enemy,
+ * включая конструктор, деструктор, методы отрисовки, нанесения урона,
+ * загрузки текстур и обновления текстовой информации.
+ */
+
 #include "Enemy.h"
 #include <cstdio>
 
+/**
+ * @brief Конструктор класса Enemy.
+ * 
+ * Инициализирует нового врага с указанными параметрами. Устанавливает размеры
+ * прямоугольника врага на весь экран (540x720). Пытается загрузить текстуру
+ * из указанного файла. Если текстура не загружена, устанавливает цвет фона
+ * в зависимости от уровня врага. Обновляет текстовое отображение здоровья.
+ * 
+ * @param renderer Указатель на SDL_Renderer для отрисовки.
+ * @param font Указатель на загруженный TTF_Font для текста.
+ * @param health Начальное и максимальное здоровье врага.
+ * @param level Уровень врага (1, 2 или 3).
+ * @param x Координата X позиции врага.
+ * @param y Координата Y позиции врага.
+ * @param imagePath Путь к файлу текстуры врага (может быть nullptr).
+ */
 Enemy::Enemy(SDL_Renderer* renderer, TTF_Font* font, int health, int level, int x, int y, const char* imagePath)
     : renderer(renderer), font(font), currentHealth(health), maxHealth(health), level(level), isActive(false) {
 
@@ -16,9 +41,9 @@ Enemy::Enemy(SDL_Renderer* renderer, TTF_Font* font, int health, int level, int 
 
     if (!enemyTexture) {
         switch (level) {
-        case 1: bgColor = { 139, 69, 19, 255 }; break;
-        case 2: bgColor = { 178, 34, 34, 255 }; break;
-        case 3: bgColor = { 75, 0, 130, 255 }; break;
+        case 1: bgColor = { 139, 69, 19, 255 }; break;   // Коричневый для уровня 1
+        case 2: bgColor = { 178, 34, 34, 255 }; break;   // Красный для уровня 2
+        case 3: bgColor = { 75, 0, 130, 255 }; break;    // Фиолетовый для уровня 3
         default: bgColor = { 100, 100, 100, 255 };
         }
     }
@@ -27,6 +52,12 @@ Enemy::Enemy(SDL_Renderer* renderer, TTF_Font* font, int health, int level, int 
     SDL_Log("Enemy created: Level %d, Health %d/%d", level, currentHealth, maxHealth);
 }
 
+/**
+ * @brief Деструктор класса Enemy.
+ * 
+ * Освобождает ресурсы: уничтожает текстуру текста здоровья
+ * и текстуру изображения врага, если они были созданы.
+ */
 Enemy::~Enemy() {
     if (texture) {
         SDL_DestroyTexture(texture);
@@ -36,6 +67,16 @@ Enemy::~Enemy() {
     }
 }
 
+/**
+ * @brief Загружает текстуру врага из файла изображения.
+ * 
+ * Пытается загрузить изображение с помощью IMG_LoadTexture.
+ * При успешной загрузке получает размеры текстуры и масштабирует её
+ * на весь экран (540x720). В случае ошибки текстура остаётся nullptr,
+ * и враг будет отображаться как цветной прямоугольник.
+ * 
+ * @param imagePath Путь к файлу изображения для загрузки.
+ */
 void Enemy::loadTexture(const char* imagePath) {
     SDL_Log("Loading texture: %s", imagePath);
 
@@ -60,6 +101,17 @@ void Enemy::loadTexture(const char* imagePath) {
     }
 }
 
+/**
+ * @brief Наносит урон врагу.
+ * 
+ * Уменьшает текущее здоровье врага на указанное количество.
+ * Здоровье не может стать меньше 0. Обновляет текстовое отображение здоровья.
+ * 
+ * @param damage Количество наносимого урона (положительное целое число).
+ * 
+ * @note Если враг не активен или уже мёртв, метод ничего не делает.
+ *       Информация о полученном уроне и текущем здоровье выводится в лог.
+ */
 void Enemy::takeDamage(int damage) {
     if (!isActive) return;
     if (!isAlive()) return;
@@ -70,13 +122,32 @@ void Enemy::takeDamage(int damage) {
     SDL_Log("Damage taken! HP: %d/%d", currentHealth, maxHealth);
 }
 
+/**
+ * @brief Обновляет состояние врага.
+ * 
+ * В текущей реализации метод зарезервирован для будущего использования
+ * (например, для анимации или эффектов). Вызывается каждый кадр игрового цикла.
+ */
 void Enemy::update() {
     // Можно добавить анимацию
 }
 
+/**
+ * @brief Отрисовывает врага на экране.
+ * 
+ * Если враг не активен, метод завершается без отрисовки.
+ * При наличии текстуры врага отображает её, растянутую на весь экран.
+ * Иначе заливает прямоугольник цветом bgColor.
+ * Всегда отрисовывает:
+ * - Жёлтую рамку вокруг экрана
+ * - Текст уровня в верхней части экрана
+ * - Полоску здоровья внизу (цвет зависит от процента здоровья)
+ * - Текущее значение здоровья текстом поверх полоски
+ */
 void Enemy::draw() {
     if (!isActive) return;
 
+    // Отрисовка текстуры врага или цветного фона
     if (enemyTexture) {
         SDL_RenderTexture(renderer, enemyTexture, NULL, &rect);
     }
@@ -85,11 +156,11 @@ void Enemy::draw() {
         SDL_RenderFillRect(renderer, &rect);
     }
 
-    // Жёлтая рамка
+    // Жёлтая рамка вокруг экрана
     SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
     SDL_RenderRect(renderer, &rect);
 
-    // Текст уровня
+    // Отрисовка текста уровня
     std::string levelText = "Level " + std::to_string(level);
     SDL_Surface* levelSurface = TTF_RenderText_Solid(font, levelText.c_str(), (int)levelText.length(), { 255, 255, 255, 255 });
     if (levelSurface) {
@@ -108,24 +179,26 @@ void Enemy::draw() {
     // Полоска здоровья внизу экрана
     float healthPercent = static_cast<float>(currentHealth) / maxHealth;
 
-    SDL_FRect healthBarBg = { 20, rect.h - 80, rect.w - 40, 30 };
-    SDL_FRect healthBar = { 20, rect.h - 80, (rect.w - 40) * healthPercent, 30 };
+    SDL_FRect healthBarBg = { 20, rect.h - 80, rect.w - 40, 30 };   // Фон полоски здоровья
+    SDL_FRect healthBar = { 20, rect.h - 80, (rect.w - 40) * healthPercent, 30 }; // Заполненная часть
 
+    // Отрисовка фона полоски (тёмно-серый)
     SDL_SetRenderDrawColor(renderer, 50, 50, 50, 255);
     SDL_RenderFillRect(renderer, &healthBarBg);
 
+    // Выбор цвета полоски в зависимости от процента здоровья
     if (healthPercent > 0.5f) {
-        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);    // Зелёный при здоровье > 50%
     }
     else if (healthPercent > 0.25f) {
-        SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+        SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);  // Жёлтый при здоровье 25-50%
     }
     else {
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);    // Красный при здоровье < 25%
     }
     SDL_RenderFillRect(renderer, &healthBar);
 
-    // Текст здоровья
+    // Отрисовка текста здоровья поверх полоски
     if (texture) {
         destText.x = (rect.w - destText.w) / 2;
         destText.y = rect.h - 80 + (30 - destText.h) / 2;
@@ -133,6 +206,17 @@ void Enemy::draw() {
     }
 }
 
+/**
+ * @brief Обновляет текстовое отображение здоровья.
+ * 
+ * Уничтожает старую текстуру текста, если она существовала.
+ * Формирует строку в формате "текущее/максимальное" и создаёт
+ * поверхность с белым текстом. Преобразует поверхность в текстуру
+ * и получает её размеры для правильного позиционирования.
+ * 
+ * @note В случае ошибки при создании поверхности или текстуры
+ *       информация об ошибке выводится в лог SDL.
+ */
 void Enemy::updateText() {
     if (texture) {
         SDL_DestroyTexture(texture);
